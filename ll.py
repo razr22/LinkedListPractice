@@ -88,7 +88,17 @@ class LinkedList:
 					currentNode.next = currentNode.next.next
 					break
 				currentNode = currentNode.next
-				
+
+	def replaceNode(self, toReplace, replaceWith):
+		print("Replacing", toReplace, "with", replaceWith)
+
+		currentNode = self.head
+		while(currentNode):
+			if currentNode.value == toReplace:
+				currentNode.value = replaceWith
+				break
+			currentNode = currentNode.next
+
 if __name__=="__main__":
 	llist = LinkedList()
 
@@ -119,5 +129,10 @@ if __name__=="__main__":
 
 #deletes specified node from LL
 	llist.deleteNode(5)
+	llist.printList()
+	print("size...", llist.count())
+
+#replace specified node
+	llist.replaceNode(1,"me")
 	llist.printList()
 	print("size...", llist.count())
