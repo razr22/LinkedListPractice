@@ -39,7 +39,7 @@ class LinkedList:
 			node.previous = self.tail
 			self.tail = node
 
-	#adds node after specified data node
+	#adds node after specified data node. data: value to search for; node: item to insert
 	def addAfter(self, data, node):
 		print("Adding", node.value, "after", data, "...")
 		if self.head is not None:
@@ -81,6 +81,7 @@ class LinkedList:
 					break
 				current_node = current_node.next
 
+	#toReplace: value to write over; replaceWith: value to insert
 	def replaceNode(self, toReplace, replaceWith):
 		print("Replacing", toReplace, "with", replaceWith)
 
