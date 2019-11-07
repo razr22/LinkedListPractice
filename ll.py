@@ -30,7 +30,7 @@ class LinkedList:
 
 	#adds node to head or tail of list depending on size.
 	def add(self, node):
-		print("adding...", node.value)
+		print("Adding...", node.value)
 		if self.head is None:
 			self.head = node
 			self.tail = node
@@ -41,7 +41,7 @@ class LinkedList:
 
 	#adds node after specified data node
 	def addAfter(self, data, node):
-		print("adding", node.value, "after", data, "...")
+		print("Adding", node.value, "after", data, "...")
 		if self.head is not None:
 			temp = self.head
 			while(temp):
@@ -103,6 +103,7 @@ class LinkedList:
 
 	#reverse print doubly LL
 	def printReverse(self):
+		print("Printing doubly linked list in reverse order...")
 		ls = []
 		flag = False
 		if self.count() > 0:
