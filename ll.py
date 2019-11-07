@@ -116,6 +116,28 @@ class LinkedList:
 				current_node = current_node.previous
 
 			print(ls)
+			
+	#reverses a LL given it's head
+	def reverse(head):
+		if head:
+			currentNode = head
+			prev = head
+			old_head = None
+			tmp = None
+			while(currentNode):
+				if not currentNode.next:
+					currentNode.next = prev
+					head = currentNode
+					old_head.next = None
+					return head
+				else:
+					if currentNode is not head:
+						tmp = currentNode.next
+						currentNode.next = prev
+				else:
+					old_head = currentNode
+			prev = currentNode
+			currentNode = tmp if tmp else currentNode.next
 
 if __name__=="__main__":
 	llist = LinkedList()
