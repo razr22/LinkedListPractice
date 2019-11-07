@@ -9,31 +9,22 @@ class Node:
 	def __init__(self, value):
 		self.value = value
 		self.next = None
+		self.previous = None
 
 class LinkedList:
 	def __init__(self):
 		self.head = None
 		self.tail = None
 
-	#prints node values to console
-	def printList(self):
-		temp = self.head
-		ls = []
-		while(temp):
-			ls.append(temp.value)
-			temp = temp.next
-
-		print(ls)
-
 	#returns number of nodes in LL
 	def count(self):
 		if self.head is None:
 			return 0
-		currentNode = self.head
+		current_node = self.head
 		count = 0
-		while(currentNode):
+		while(current_node):
 			count+=1
-			currentNode = currentNode.next
+			current_node = current_node.next
 
 		return count
 
@@ -45,6 +36,7 @@ class LinkedList:
 			self.tail = node
 		else:
 			self.tail.next = node
+			node.previous = self.tail
 			self.tail = node
 
 	#adds node after specified data node
@@ -69,12 +61,12 @@ class LinkedList:
 			self.head = None
 			self.tail = None
 		elif self.count() > 0:
-			currentNode = self.head
-			while(currentNode):
-				if currentNode.next == self.tail:
-					self.tail = currentNode
-					currentNode.next = None
-				currentNode = currentNode.next
+			current_node = self.head
+			while(current_node):
+				if current_node.next == self.tail:
+					self.tail = current_node
+					current_node.next = None
+				current_node = current_node.next
 
 	#deletes specified node
 	def deleteNode(self, value):
@@ -82,22 +74,46 @@ class LinkedList:
 		if self.count() == 0:
 			print("Error! Empty LL!")
 		elif self.count() > 0:
-			currentNode = self.head
-			while (currentNode):
-				if currentNode.next.value == value:
-					currentNode.next = currentNode.next.next
+			current_node = self.head
+			while (current_node):
+				if current_node.next.value == value:
+					current_node.next = current_node.next.next
 					break
-				currentNode = currentNode.next
+				current_node = current_node.next
 
 	def replaceNode(self, toReplace, replaceWith):
 		print("Replacing", toReplace, "with", replaceWith)
 
-		currentNode = self.head
-		while(currentNode):
-			if currentNode.value == toReplace:
-				currentNode.value = replaceWith
+		current_node = self.head
+		while(current_node):
+			if current_node.value == toReplace:
+				current_node.value = replaceWith
 				break
-			currentNode = currentNode.next
+			current_node = current_node.next
+
+	#prints node values to console
+	def printList(self):
+		temp = self.head
+		ls = []
+		while(temp):
+			ls.append(temp.value)
+			temp = temp.next
+
+		print(ls)
+
+	#reverse print doubly LL
+	def printReverse(self):
+		ls = []
+		flag = False
+		if self.count() > 0:
+			current_node = self.tail
+			while(not flag):
+				ls.append(current_node.value)
+				if (current_node.previous is None):
+					flag = True
+				current_node = current_node.previous
+
+			print(ls)
 
 if __name__=="__main__":
 	llist = LinkedList()
@@ -136,3 +152,6 @@ if __name__=="__main__":
 	llist.replaceNode(1,"me")
 	llist.printList()
 	print("size...", llist.count())
+
+#print LL in reverse order
+	llist.printReverse()
